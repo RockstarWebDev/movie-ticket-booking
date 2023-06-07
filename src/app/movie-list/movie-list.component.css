@@ -1,0 +1,29 @@
+.movie {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+  
+  .poster {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+  }
+  
+  .details {
+    flex: 1;
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .info p {
+    margin: 5px 0;
+  }
+  
+  .info strong {
+    font-weight: bold;
+  }
