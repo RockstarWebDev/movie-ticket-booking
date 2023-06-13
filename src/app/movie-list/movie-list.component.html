@@ -1,5 +1,6 @@
-<p>movie-list works!</p>
+<app-movie-search (search)="handleSearch($event)"></app-movie-search>
 
+<ng-container *ngIf="movies.length > 0; else noResults">
 <div class="movie" *ngFor="let movie of movies">
     <img class="poster" [src]="movie.posterUrl" alt="Movie Poster" />
     <div class="details">
@@ -14,5 +15,10 @@
       </div>
     </div>
   </div>
+</ng-container>
+
+<ng-template #noResults>
+  <app-no-result></app-no-result>
+</ng-template>
 
 
