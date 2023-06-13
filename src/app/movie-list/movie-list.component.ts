@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MovieService } from '../movie.service';
 
 
@@ -20,12 +20,20 @@ export class MovieListComponent implements OnInit{
     this.movieService.getMovies().subscribe({
       next: (response:any) => {
         this.movies = response;
+        // console.log(this.movies);
        // Handle login success, store user data, navigate to home page, etc.
       },
       error: (error) => {
         // Handle login failure, display error message, etc.
       }
     })
+  }
+
+  handleSearch(query: string): void {
+    this.movieService.searchMovies(query)
+      .subscribe(movies => {
+        this.movies = movies;
+      });
   }
 
   // ngOnDestroy() {
