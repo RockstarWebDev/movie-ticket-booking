@@ -1,7 +1,16 @@
 <app-movie-search (search)="handleSearch($event)"></app-movie-search>
 
-<ng-container *ngIf="movies.length > 0; else noResults">
-<div class="movie" *ngFor="let movie of movies">
+<div class="genres-container">
+  <h4>Select Genres:</h4>
+  <div class="genres-row">
+    <label *ngFor="let genre of genres" class="checkbox-label">
+      <input type="checkbox" [value]="genre" (change)="toggleGenreSelection(genre)" [checked]="isGenreSelected(genre)">{{genre}}
+    </label>
+  </div>
+</div>
+
+<ng-container *ngIf="filteredMovies.length > 0; else noResults">
+<div class="movie" *ngFor="let movie of filteredMovies">
     <img class="poster" [src]="movie.posterUrl" alt="Movie Poster" />
     <div class="details">
       <h2>{{ movie.title }}</h2>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Movie } from './movie.model';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { Movie } from './movie.model';
 })
 export class MovieService {
   private apiUrl = 'http://localhost:3000/movies';
+  handleError: any;
 
   constructor(private http: HttpClient) { }
 
@@ -18,5 +19,9 @@ export class MovieService {
   searchMovies(query: string): Observable<Movie[]> {
     const searchUrl = `${this.apiUrl}?q=${query}`; // Append the search query to the API URL
     return this.http.get<Movie[]>(searchUrl);
+  }
+
+  getFilterOptions(): Observable<any> {
+    return this.http.get<any>(this.apiUrl + '/filter-options');
   }
 }
